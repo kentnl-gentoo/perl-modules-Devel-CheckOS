@@ -58,10 +58,11 @@ WriteMakefile(
             bugtracker => 'https://github.com/DrHyde/perl-modules-Devel-CheckOS/issues'
         },
     },
+    MIN_PERL_VERSION => "5.6.0",
     # FIXME have this look at all the modules, or summat
     VERSION_FROM => 'lib/Devel/CheckOS.pm',
     PREREQ_PM    => {
-        'Test::More'       => 0.62,  # too high? but it works
+        'Test::More'       => '0.88', # done_testing
         'File::Find::Rule' => 0.28,
         'File::Temp'       => 0.19,
         'Data::Compare'    => 1.21,
@@ -86,11 +87,7 @@ sub findOSes {
         my $modname = join('::', File::Spec->splitdir($dir), $_);
         (my $classname = $modname) =~ s/^lib:://;
         (my $prompt_modname = $modname) =~ s/.*AssertOS:://;
-        {
-            # suppress 'Subroutine os_is redefined'
-            local $^W = 0;
-            eval "use $modname";
-        }
+        eval "use $modname";
         next if($@);
         my $hasexpn = $classname->can('expn') ? '/?' : '';
    ASK: my $answer = prompt(

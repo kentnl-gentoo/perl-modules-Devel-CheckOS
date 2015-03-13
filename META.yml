@@ -26,4 +26,4 @@ requires:
 resources:
   bugtracker: https://github.com/DrHyde/perl-modules-Devel-CheckOS/issues
   repository: https://github.com/DrHyde/perl-modules-Devel-CheckOS
-version: 1.75
+version: 1.76
